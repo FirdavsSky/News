@@ -1,5 +1,6 @@
 package com.example.news.data.repository
 
+import android.util.Log
 import com.example.news.data.model.ApiService
 import com.example.news.data.model.Article
 import javax.inject.Inject
@@ -16,6 +17,7 @@ class ArticleRepository @Inject constructor(private val apiService: ApiService) 
             return response.articles
         } else {
             throw Exception("Failed to fetch articles: ${response.status}")
+
         }
     }
 }
