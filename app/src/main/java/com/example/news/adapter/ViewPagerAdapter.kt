@@ -3,18 +3,26 @@ package com.example.news.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.news.R
+import com.example.news.fragments.ViewPagerFragment
 
-class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
-    private val fragments = ArrayList<Fragment>()
+class ViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
+    private val categories = mutableListOf<String>()
 
-    fun addFragment(fragment: Fragment) {
-        fragments.add(fragment)
+    fun updateCategories(categories: List<String>){
+        this.categories.apply {
+            if (categories.isEmpty()) return
+            clear()
+            addAll(categories)
+            notifyItemRangeChanged(0,categories.lastIndex)
+        }
     }
 
-    override fun getItem(position: Int): Fragment = fragments[position]
+    override fun getItemCount(): Int = categories.size
 
-    override fun getCount(): Int = fragments.size
-
+    override fun createFragment(position: Int): Fragment {
+        return ViewPagerFragment.newInstance(categories[position])
+    }
 }

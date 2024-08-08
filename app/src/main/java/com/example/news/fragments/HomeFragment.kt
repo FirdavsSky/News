@@ -1,34 +1,35 @@
 package com.example.news.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
 import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.example.news.R
 import com.example.news.adapter.ViewPagerAdapter
+import com.example.news.viewModel.HomeViewModel
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
+@AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
-    private var param1: String? = null
-    private var param2: String? = null
 
-    private var viewPager: ViewPager? = null
-    private var tabLayout: TabLayout? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private val viewModel: HomeViewModel by viewModels()
+    private val viewPagerAdapter by lazy {
+        ViewPagerAdapter(this)
     }
+    private var viewPager: ViewPager2? = null
+    private var tabLayout: TabLayout? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,30 +37,22 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         viewPager = view.findViewById(R.id.view_pager)
         tabLayout = view.findViewById(R.id.tab_layout)
 
-        setupViewPager()
+        viewModel.switchStates.observe(viewLifecycleOwner) { states ->
+            setupViewPager(states)
+        }
     }
 
-    private fun setupViewPager() {
-        val viewPagerAdapter = ViewPagerAdapter(childFragmentManager)
-        viewPagerAdapter.addFragment(ViewPagerFragment())
-        viewPagerAdapter.addFragment(ViewPagerFragment())
-        viewPagerAdapter.addFragment(ViewPagerFragment())
-        viewPagerAdapter.addFragment(ViewPagerFragment())
-
+    private fun setupViewPager(states: List<String>) {
         viewPager?.adapter = viewPagerAdapter
-        tabLayout?.setupWithViewPager(viewPager)
+        viewPagerAdapter.updateCategories(states)
 
-    }
-
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+        tabLayout?.let {tabLayout->
+            viewPager?.let { pager2 ->
+                TabLayoutMediator(tabLayout, pager2){ tab, position ->
+                    tab.text = states[position]
+                }.attach()
             }
+        }
     }
+
 }

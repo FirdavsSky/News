@@ -12,7 +12,7 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 
-class ViewPagerFragment : Fragment() {
+class ViewPagerFragment : Fragment(R.layout.fragment_view_pager) {
 
     private var param1: String? = null
     private var param2: String? = null
@@ -25,21 +25,13 @@ class ViewPagerFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        return inflater.inflate(R.layout.fragment_view_pager, container, false)
-    }
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(param1: String) =
             ViewPagerFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
                 }
             }
     }

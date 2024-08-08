@@ -21,7 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             >
-
             <TextView
                 android:id="@+id/user_name"
                 android:layout_width="wrap_content"
@@ -29,41 +28,32 @@
                 android:textSize="18sp"
                 android:fontFamily="@font/robotobold"
                 android:textColor="@color/black"
-                android:text="News"
-               >
-            </TextView>
+                android:text="News"/>
 
             <SearchView
                 android:id="@+id/search_view"
+                android:layout_marginStart="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
         </com.google.android.material.appbar.MaterialToolbar>
-
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <RelativeLayout
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="56dp">
+        android:layout_height="56dp"
+        app:tabIconTint="@color/tab_icon_selector"
+        android:background="@color/white"
+        app:tabIndicatorColor="@color/color_user_search_item_name"
+        />
 
-        <androidx.viewpager.widget.ViewPager
+        <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/tab_layout" />
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_layout"
-            android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            app:tabIconTint="@color/tab_icon_selector"
-            android:background="@drawable/gradient_view_pager_background"
-            app:tabIndicatorColor="@color/color_user_search_item_name"
-            />
-    </RelativeLayout>
-
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
 
 </LinearLayout>

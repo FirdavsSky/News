@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     }
 
-
    private fun initBottomNavigationView(){
        bottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigationView?.setOnItemSelectedListener {
