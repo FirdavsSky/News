@@ -6,4 +6,6 @@
     <color name="color_user_search_item_message">#80000000</color>
     <color name="gradient_view_pager_start_color">#D4D4D8</color>
     <color name="gradient_view_pager_end_color">#FFFFFF</color>
+    <color name="text_color">#212121</color>
+
 </resources>

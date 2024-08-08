@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#F6F6FC"
+    android:orientation="vertical"
+    tools:context=".fragments.OptionFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/robotolight"
+        android:background="@drawable/background_text_option_fragment"
+        android:text="@string/option_text" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="16dp"
+        android:background="@drawable/background_text_option_fragment"
+        android:orientation="vertical">
+
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/switchPolitics"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:checked="true"
+            android:layout_gravity="start"
+            android:text="Politics"/>
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/switchSport"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:checked="true"
+            android:layout_gravity="start"
+            android:text="Sport"/>
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/switchNature"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:checked="true"
+            android:layout_gravity="start"
+            android:text="Nature" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/switchScience"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:checked="true"
+            android:text="Science"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

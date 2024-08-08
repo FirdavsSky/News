@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/home"
+        android:title=""
+        android:orderInCategory="1"/>
+
+    <item
+        android:id="@+id/history"
+        android:title=""
+        android:icon="@drawable/clock"
+        android:orderInCategory="2"/>
+
+    <item
+        android:id="@+id/star"
+        android:title=""
+        android:icon="@drawable/star"
+        android:orderInCategory="3"/>
+
+    <item
+        android:id="@+id/option"
+        android:icon="@drawable/options"
+        android:title=""
+        android:orderInCategory="4"/>
+
+</menu>

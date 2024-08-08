@@ -29,6 +29,5 @@ class ArticleViewModel @Inject constructor(
         viewModelScope.launch {
             _article.postValue(repository.fetchArticles(q, apiKey))
         }
-
     }
 }
