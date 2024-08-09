@@ -17,8 +17,6 @@ private const val ARG_PARAM2 = "param2"
 @AndroidEntryPoint
 class DetailFragment : Fragment(R.layout.fragment_main) {
 
-    private val articleViewModel: ArticleViewModel by viewModels()
-
 
     private var param1: String? = null
     private var param2: String? = null
@@ -36,13 +34,6 @@ class DetailFragment : Fragment(R.layout.fragment_main) {
         super.onViewCreated(view, savedInstanceState)
 
 
-
-
-        //articleViewModel.fetchArticles("sport",AppModule.API_KEY)
-
-        //articleViewModel.article.observe(viewLifecycleOwner){
-
-        //}
     }
 
 

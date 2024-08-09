@@ -10,12 +10,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.news.R
 import com.example.news.data.model.Article
+import com.example.news.utils.OnChildItemClickListener
 import org.w3c.dom.Text
 
 class ArticleAdapter(
     private val listArticle: List<Article>
 ) : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() {
+
+    private var childItemClickListener: OnChildItemClickListener? = null
     private var context: Context? = null
+
+    fun setListener(listener: OnChildItemClickListener) {
+
+        childItemClickListener = listener
+    }
 
     inner class ArticleViewHolder(view: View): RecyclerView.ViewHolder(view){
         private val itemImageView: ImageView = view.findViewById(R.id.itemImageView)
@@ -31,6 +39,7 @@ class ArticleAdapter(
             titleTextView.text = item.title
             descriptionTextView.text = item.description
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
@@ -44,5 +53,9 @@ class ArticleAdapter(
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val item = listArticle[position]
         holder.bind(item)
+
+        holder.itemView.setOnClickListener {
+            childItemClickListener?.onChildItemClicked(item.title)
+        }
     }
 }

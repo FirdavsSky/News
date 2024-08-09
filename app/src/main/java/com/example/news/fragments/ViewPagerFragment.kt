@@ -19,13 +19,11 @@ import kotlinx.coroutines.launch
 
 
 private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 @AndroidEntryPoint
 class ViewPagerFragment : Fragment(R.layout.fragment_view_pager) {
 
     private var articleRecyclerView: RecyclerView? = null
-    private var articleAdapter: ArticleAdapter? = null
 
     private val viewModel: ArticleViewModel by viewModels()
     private var param1: String? = null
@@ -48,12 +46,11 @@ class ViewPagerFragment : Fragment(R.layout.fragment_view_pager) {
 
         viewModel.article.observe(viewLifecycleOwner){article ->
             articleRecyclerView.let {
-                if (it != null) {
-                    it.adapter = ArticleAdapter(article)
-                }
-            }
+                 it?.adapter = ArticleAdapter(article)
 
+            }
         }
+
     }
 
 
